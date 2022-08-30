@@ -5,7 +5,7 @@ import google.cloud.dlp
 import csv
 
 # Replace with the correct Google Cloud project id
-project_id = "rubenfc-sandbox"
+project_id = "<MY_PROJECT_ID>"
 
 
 # Read sample data from CSV
