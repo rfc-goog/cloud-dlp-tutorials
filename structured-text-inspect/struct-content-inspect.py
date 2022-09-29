@@ -1,14 +1,26 @@
-### https://cloud.google.com/dlp/docs/inspecting-structured-text#dlp-inspect-table-python
-# Import the client library
+# Copyright 2022 Google LLC.
+# SPDX-License-Identifier: Apache-2.0
+
+"""Cloud Data Loss Prevention inspection for tabular data
+
+This script invokes Cloud DLP's inspection on structured data read from a CSV
+file, as described in
+https://cloud.google.com/dlp/docs/inspecting-structured-text#dlp-inspect-table-python
+
+Usage: Edit file dlp_inspection_conf with the desired configuration values
+before running this script
+"""
+
 import google.cloud.dlp
 import csv
+# Local config file.
 import dlp_inspection_conf as config
 
-# Replace with the correct Google Cloud project id
-project_id = "<MY_PROJECT_ID>"
+# Replace with the correct Google Cloud project id.
+project_id = config.project_id
 
-# Read sample data from CSV
-file_name = "sample-data-10lines.csv"
+# Read sample data from CSV.
+file_name = config.file_name
 with open(file_name, encoding="utf-8", newline="") as csvfile:
   file_content = csv.reader(csvfile, delimiter=",", quotechar='"')
   csv_header = next(file_content)
@@ -21,7 +33,7 @@ with open(file_name, encoding="utf-8", newline="") as csvfile:
 
 # Instantiate a client.
 dlp_client = google.cloud.dlp_v2.DlpServiceClient()
-# Build table content
+# Build table content.
 headers = [{"name": val} for val in csv_header]
 rows = []
 for row in csv_rows:
@@ -35,18 +47,19 @@ item = {"table": table}
 # The info types to search for in the content. Required.
 info_types = [{"name": type} for type in config.infoTypeList]
 # info_types = [
-# 	{"name": "PERSON_NAME"}, 
+# 	{"name": "PERSON_NAME"},
 # 	{"name": "STREET_ADDRESS"},
 # 	{"name": "DATE"},
 # 	{"name": "DATE_OF_BIRTH"}
 # ]
 
 # The minimum likelihood to constitute a match. Optional.
-min_likelihood = google.cloud.dlp_v2.Likelihood.LIKELIHOOD_UNSPECIFIED
+min_likelihood = config.min_likelihood
 # The maximum number of findings to report (0 = server maximum). Optional.
-max_findings = 0
+max_findings = config.max_findings
 # Whether to include the matching string in the results. Optional.
-include_quote = True
+include_quote = config.include_quote
+
 # Convert the project id into a full resource id.
 parent = f"projects/{project_id}"
 # Construct the configuration dictionary. Keys which are None may
@@ -79,5 +92,3 @@ if response.result.findings:
     print(f"Likelihood: {likelihood}\n")
 else:
   print("No findings.")
-
-#print(response)
