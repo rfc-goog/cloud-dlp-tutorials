@@ -1,6 +1,5 @@
 ### https://cloud.google.com/dlp/docs/inspecting-structured-text#dlp-inspect-table-python
 # Import the client library
-from cgi import test
 import google.cloud.dlp
 import csv
 import dlp_inspection_conf as config
@@ -67,7 +66,7 @@ response = dlp_client.inspect_content(
 if response.result.findings:
   for finding in response.result.findings:
     try:
-      print("Quote: {}".format(finding.quote))
+      print(f"Quote: {finding.quote}")
     except AttributeError:
       pass
     for location in finding.location.content_locations:
