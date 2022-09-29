@@ -7,8 +7,10 @@ This script invokes Cloud DLP's inspection on structured data read from a CSV
 file, as described in
 https://cloud.google.com/dlp/docs/inspecting-structured-text#dlp-inspect-table-python
 
-Usage: Edit file dlp_inspection_conf with the desired configuration values
-before running this script
+Usage: Before running this script:
+1. Edit file dlp_inspection_conf with the desired configuration values.
+2. Make sure your default application credentials are set correctly, e.g.
+by running `gcloud auth application-default login`.
 """
 
 import google.cloud.dlp
