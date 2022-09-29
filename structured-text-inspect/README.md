@@ -25,7 +25,7 @@ configuration. Relevant parameters:
    - Name of the CSV file you want to inspect
 2. Install the Python dependencies with `pip install -r requirements.txt`
 3. Make sure your [Application Default Credentials](https://cloud.google.com/docs/authentication/application-default-credentials)
-are set correctly
+are set correctly, e.g. by running `gcloud auth application-default login`
 4. Run the script with `python struct_content_inspect.py`
 
 ## Sample input
