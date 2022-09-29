@@ -4,7 +4,7 @@ This script inspects a local CSV file for sensitive data using the
 method, as described in the [product documentation](https://cloud.google.com/dlp/docs/inspecting-structured-text#dlp-inspect-table-python).
 
 This is a [_Content method_](https://cloud.google.com/dlp/docs/concepts-method-types#content-methods),
-which means data is not eprsisted in Google Cloud.
+which means data is not persisted in Google Cloud.
 
 ## Disclaimer
 This is not a Google product. 
